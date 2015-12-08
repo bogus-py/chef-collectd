@@ -24,6 +24,7 @@ end
 node["collectd"]["plugins"].each_pair do |plugin_key, definition|
   # Graphite auto-discovery
   collectd_ng_plugin plugin_key.to_s do
+    action definition["action"] if definition["action"]
     config definition["config"].to_hash if definition["config"]
     template definition["template"].to_s if definition["template"]
     cookbook definition["cookbook"].to_s if definition["cookbook"]
